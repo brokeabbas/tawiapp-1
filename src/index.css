@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: Manrope, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: #F5F5F2;
+  color: #494B31;
+}
+
+/* Soft background grid */
+.tawi-grid {
+  background-image: radial-gradient(rgba(85, 99, 28, 0.10) 1px, transparent 1px),
+    radial-gradient(rgba(153, 161, 119, 0.10) 1px, transparent 1px);
+  background-position: 0 0, 20px 20px;
+  background-size: 40px 40px;
+}
+
+/* Subtle shimmer line (single source of truth) */
+@keyframes tawiSweep {
+  0% {
+    transform: translateX(-30%);
+    opacity: 0.05;
+  }
+  45% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateX(140%);
+    opacity: 0.05;
+  }
+}
+
+.tawi-sweep {
+  animation: tawiSweep 4.5s ease-in-out infinite;
+}
+
+/* Optional: dash draw for the map path */
+@keyframes tawiDashDraw {
+  0% {
+    stroke-dashoffset: 120;
+    opacity: 0.25;
+  }
+  45% {
+    opacity: 0.55;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.55;
+  }
+}
+
+.tawi-dash-draw {
+  stroke-dasharray: 10 10;
+  stroke-dashoffset: 120;
+  animation: tawiDashDraw 1.6s ease-out both;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tawi-sweep,
+  .tawi-dash-draw {
+    animation: none !important;
+  }
+}
