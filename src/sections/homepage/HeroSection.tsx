@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Button, Container, cn } from "../../components/reusable/atoms";
-import logo from "../../assets/logo.png";
-import farmerBg from "../../assets/bg.jpg"; // <-- add this image to your assets
+import logo from "../../assets/logo1.jpeg";
+import farmerBg from "../../assets/bg6.webp";
 
 function CheckIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -29,16 +29,16 @@ function StatCard({
   return (
     <div
       className={cn(
-        "group relative rounded-2xl border border-black/10 bg-white/75 p-4",
-        "shadow-[0_12px_40px_-24px_rgba(0,0,0,.35)] backdrop-blur",
-        "transition hover:-translate-y-0.5 hover:bg-white/85"
+        "group relative rounded-2xl border border-white/25 bg-white/55 p-4",
+        "shadow-[0_18px_45px_-35px_rgba(0,0,0,.55)] backdrop-blur-md",
+        "transition hover:-translate-y-0.5 hover:bg-white/65"
       )}
     >
-      <div className="text-[11px] font-medium tracking-wide text-zinc-700/70">
+      <div className="text-[11px] font-medium tracking-wide text-zinc-700/75">
         {label}
       </div>
       <div className="mt-1 text-lg font-semibold text-zinc-950">{value}</div>
-      {hint ? <div className="mt-1 text-[11px] text-zinc-700/65">{hint}</div> : null}
+      {hint ? <div className="mt-1 text-[11px] text-zinc-700/70">{hint}</div> : null}
     </div>
   );
 }
@@ -48,10 +48,7 @@ export function HeroSection() {
 
   const parent = {
     hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.04 },
-    },
+    show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.04 } },
   };
 
   const item = {
@@ -84,40 +81,39 @@ export function HeroSection() {
         }
       `}</style>
 
-      {/* Background farmer image that dynamically fits */}
+      {/* Background (more visible, readability handled mostly by the glass content panel) */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Farmer photo */}
         <img
           src={farmerBg}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-center saturate-[1.08] contrast-[1.08]"
           draggable={false}
           loading="eager"
           decoding="async"
         />
 
-        {/* Readability overlays */}
-        <div className="absolute inset-0 bg-white/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/55 to-white/90" />
+        {/* Keep background visible: light wash + left-to-right readability */}
+        <div className="absolute inset-0 bg-white/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/18 to-transparent" />
 
-        {/* Brand color wash (subtle, animated) */}
+        {/* Brand tint */}
         <div
-          className="absolute inset-0 opacity-80"
+          className="absolute inset-0 opacity-65"
           style={{
             backgroundImage:
-              "linear-gradient(120deg, rgba(34,197,94,0.16), rgba(245,158,11,0.12), rgba(16,185,129,0.10), rgba(255,255,255,0.0))",
+              "linear-gradient(120deg, rgba(34,197,94,0.18), rgba(245,158,11,0.14), rgba(16,185,129,0.12), rgba(255,255,255,0))",
             backgroundSize: "240% 240%",
             animation: reduceMotion ? undefined : "tawiGradientShift 16s ease-in-out infinite",
           }}
         />
 
-        {/* Soft floating glows */}
+        {/* Soft glows */}
         <div
           className="absolute left-1/2 top-[-320px] h-[760px] w-[760px] -translate-x-1/2 rounded-full blur-3xl"
           style={{
             background:
-              "radial-gradient(circle at 30% 30%, rgba(34,197,94,0.18), rgba(255,255,255,0) 60%)",
+              "radial-gradient(circle at 30% 30%, rgba(34,197,94,0.16), rgba(255,255,255,0) 60%)",
             animation: reduceMotion ? undefined : "tawiFloat 10s ease-in-out infinite",
           }}
         />
@@ -125,51 +121,55 @@ export function HeroSection() {
           className="absolute right-[-260px] top-[18%] h-[560px] w-[560px] rounded-full blur-3xl"
           style={{
             background:
-              "radial-gradient(circle at 30% 30%, rgba(245,158,11,0.16), rgba(255,255,255,0) 60%)",
+              "radial-gradient(circle at 30% 30%, rgba(245,158,11,0.14), rgba(255,255,255,0) 60%)",
             animation: reduceMotion ? undefined : "tawiFloat 12s ease-in-out infinite",
           }}
         />
 
-        {/* Grain / texture */}
+        {/* Grain */}
         <div
-          className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
+          className="absolute inset-0 opacity-[0.05] mix-blend-multiply"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(115deg, rgba(0,0,0,0.14) 0px, rgba(0,0,0,0.14) 1px, rgba(0,0,0,0.00) 1px, rgba(0,0,0,0.00) 14px)",
+              "repeating-linear-gradient(115deg, rgba(0,0,0,0.14) 0px, rgba(0,0,0,0.14) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 14px)",
           }}
         />
       </div>
 
-      {/* Content (single-column now) */}
       <Container className="relative py-14 md:py-20">
-        <div className="max-w-2xl">
+        {/* Glass panel = makes everything feel blended */}
+        <div
+          className={cn(
+            "max-w-2xl rounded-3xl border border-white/25 bg-white/35",
+            "backdrop-blur-lg shadow-[0_30px_90px_-60px_rgba(0,0,0,.65)]",
+            "p-6 sm:p-8"
+          )}
+        >
           <motion.div
             variants={item}
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-800"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/55 px-3 py-1 text-xs font-semibold text-zinc-800"
           >
             <span className="h-2 w-2 rounded-full bg-emerald-500" />
-            Field capture • Verification • Traceability
+            Field capture • Verification • Visibility
           </motion.div>
 
-          <motion.div variants={item} className="mt-6 flex items-center gap-4">
+          {/* ✅ Removed the small: logo | divider | Agri Verify row */}
+
+          {/* Big logo (keep as the hero “title”) */}
+          <motion.div variants={item} className="mt-6">
             <img
               src={logo}
-              alt="Tawi"
-              className="h-12 w-auto object-contain drop-shadow-[0_12px_26px_rgba(0,0,0,0.20)]"
+              alt="TAWI Agri Verify"
+              className={cn(
+                "h-20 w-auto object-contain sm:h-24 md:h-28",
+                "rounded-2xl",
+                "drop-shadow-[0_18px_36px_rgba(0,0,0,0.22)]"
+              )}
               draggable={false}
               loading="eager"
               decoding="async"
             />
-            <div className="h-8 w-px bg-black/10" />
-            <div className="text-sm font-semibold text-zinc-800/90">Agri Verify</div>
           </motion.div>
-
-          <motion.h1
-            variants={item}
-            className="font-heading mt-5 text-4xl font-semibold leading-[1.06] tracking-tight text-zinc-950 sm:text-5xl md:text-6xl"
-          >
-            TAWI Agri Verify
-          </motion.h1>
 
           <motion.p
             variants={item}
@@ -191,7 +191,7 @@ export function HeroSection() {
               "Summary view for progress and exports",
             ].map((t) => (
               <div key={t} className="flex items-start gap-2">
-                <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/70 text-emerald-600 ring-1 ring-black/10 shadow-[0_10px_26px_-20px_rgba(0,0,0,.45)]">
+                <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/55 text-emerald-600 ring-1 ring-white/25 shadow-[0_10px_26px_-20px_rgba(0,0,0,.45)]">
                   <CheckIcon className="h-4 w-4" />
                 </span>
                 <span>{t}</span>
@@ -214,8 +214,8 @@ export function HeroSection() {
               variant="secondary"
               className={cn(
                 "px-5 py-2.5 rounded-2xl",
-                "border border-black/10 bg-white/60 text-zinc-900",
-                "hover:bg-white/80 transition"
+                "border border-white/25 bg-white/45 text-zinc-900",
+                "hover:bg-white/60 transition"
               )}
             >
               Quick start guide
