@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Container, cn } from "./atoms";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo1.jpeg";
 
 function MenuIcon({ open }: { open: boolean }) {
   return (

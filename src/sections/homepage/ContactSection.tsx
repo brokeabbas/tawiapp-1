@@ -1,6 +1,6 @@
 import { Button, Container, cn } from "../../components/reusable/atoms";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo1.jpeg";
 
 export function ContactSection() {
   return (

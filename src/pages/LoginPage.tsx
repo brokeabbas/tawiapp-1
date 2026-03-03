@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "../components/reusable/atoms";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo1.jpeg";
 
 type Role = "agent" | "location_manager";
 
