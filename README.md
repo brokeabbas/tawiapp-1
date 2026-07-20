@@ -1,12 +1,39 @@
-# React + Vite
+# TAWI Field Operations Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive operational frontend for field agents and location managers working across the TAWI agricultural network.
 
-Currently, two official plugins are available:
+**Live interface:** [tawiapp-1.vercel.app](https://tawiapp-1.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Programme website:** [fics.com.ng](https://fics.com.ng)
 
-## Expanding the ESLint configuration
+## Core workflows
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Agent dashboards and assignment tracking
+- Linked-location views and operational context
+- Farm registration and capture workflows
+- Location-manager dashboards
+- Captured-farm and agent directory views
+- Map-based farm and location exploration
+- Responsive layouts for field and mobile use
+
+## Stack
+
+React 19, TypeScript, React Router, Axios, MapLibre, React Map GL, Framer Motion, Tailwind CSS and Vite.
+
+## Run locally
+
+```bash
+cp .env.example .env
+npm ci
+npm run dev
+```
+
+Create a production build with `npm run build`.
+
+## Configuration
+
+Set `VITE_API_BASE_URL` to the relevant TAWI API endpoint. Protected production services and operational records are not included in this public repository.
+
+## Authorship
+
+Designed and built independently by Yakubu Abbas Yakubu as part of the wider TAWI/FICS platform.
